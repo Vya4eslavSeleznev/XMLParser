@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  parser:
+    image: parser:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    container_name: parser
+    ports:
+      - 8081:8080

@@ -96,7 +96,6 @@ public class ParserServiceImpl implements ParserService {
             }
 
             sb.delete(0, sb.length());
-            System.out.println();
         }
 
         textList.add(LAST_PARAGRAPH);
