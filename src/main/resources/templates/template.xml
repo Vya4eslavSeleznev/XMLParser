@@ -1,25 +1,25 @@
 <letter xmlns:th="http://www.w3.org/1999/xhtml">
     <title>
-        <description th:text="${description}"/>
-        <theme th:text="${theme}"/>
-        <alien_race th:code="${code}"/>
-        <created th:text="${date}"/>
-        <id description="Идентификатор письма" th:value="${id}"/>
+        <description th:utext="${model.description}"/>
+        <theme th:utext="${model.theme}"/>
+        <alien_race th:code="${model.code}"/>
+        <created th:utext="${model.date}"/>
+        <id description="Идентификатор письма" th:value="${model.id}"/>
         <authors>
-            <employee th:each="author: ${authors}">
-                <name th:text="${author.name}"/>
-                <second_name th:text="${author.secondName}"/>
-                <lastname th:text="${author.lastname}"/>
-                <position th:text="${author.position}"/>
+            <employee th:each="author: ${model.authors}">
+                <name th:utext="${author.name}"/>
+                <second_name th:utext="${author.secondName}"/>
+                <lastname th:utext="${author.lastname}"/>
+                <position th:utext="${author.position}"/>
             </employee>
         </authors>
     </title>
     <message>
-        <paragraph th:each="message: ${messages}" th:text="${message}"/>
+        <paragraph th:each="message: ${model.messages}" th:utext="${message}"/>
     </message>
     <contacts>
-        <tel th:number="${phone}"/>
-        <address th:description="${address}"/>
+        <tel th:number="${model.phone}"/>
+        <address th:description="${model.address}"/>
     </contacts>
-    <sent_time th:text="${currentDate}"/>
+    <sent_time th:utext="${model.currentDate}"/>
 </letter>
