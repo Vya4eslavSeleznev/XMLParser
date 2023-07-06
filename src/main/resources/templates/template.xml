@@ -1,38 +1,25 @@
 <letter xmlns:th="http://www.w3.org/1999/xhtml">
-    <!-- Заголовок письма-->
     <title>
-        <!-- Описание-->
-        <description>value="${description}"</description>
-        <!-- Тема письма-->
+        <description th:text="${description}"/>
         <theme th:text="${theme}"/>
-        <!-- Код темы письма-->
-        <alien_race code="${code}"/>
-        <!-- Дата создания исходного письма-->
-        <created>${date}</created>
-        <!-- ИД письма-->
+        <alien_race th:code="${code}"/>
+        <created th:text="${date}"/>
         <id description="Идентификатор письма" th:value="${id}"/>
-        <!--Авторы письма-->
         <authors>
-            <!-- Автор 1-->
-            <employee>
-
-
-
+            <employee th:each="author: ${authors}">
+                <name th:text="${author.name}"/>
+                <second_name th:text="${author.secondName}"/>
+                <lastname th:text="${author.lastname}"/>
+                <position th:text="${author.position}"/>
             </employee>
         </authors>
     </title>
-    <!-- Текст письма-->
     <message>
-
-
+        <paragraph th:each="message: ${messages}" th:text="${message}"/>
     </message>
-    <!-- контактная информация-->
     <contacts>
         <tel th:number="${phone}"/>
         <address th:description="${address}"/>
     </contacts>
-    <!-- Время отправки-->
-    <sent_time>
-        ${currentDate}
-    </sent_time>
+    <sent_time th:text="${currentDate}"/>
 </letter>
