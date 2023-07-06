@@ -13,7 +13,7 @@ Thymeleaf по приведенным в задании правилам.
 
 ### `http://localhost:8081/xml`
 
-- Body(form-data). На вход подается файл `.xml`
+- Body(form-data). На вход подается файл `key=file` `value=.xml`
 
 - Response:
 
