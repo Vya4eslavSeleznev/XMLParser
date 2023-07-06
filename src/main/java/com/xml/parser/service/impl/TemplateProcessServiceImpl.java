@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -46,7 +47,7 @@ public class TemplateProcessServiceImpl implements TemplateProcessService {
           .map(elem -> new EmployeeModel(
             elem.getFirstName(), elem.getSecondName(), elem.getLastName(), elem.getPosition().getName()
           ))
-          .toList();
+          .collect(Collectors.toList());
 
         OutputMessageModel model = new OutputMessageModel(
           header.getDescription(),

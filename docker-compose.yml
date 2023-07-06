@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  parser:
+    image: vya4eslava/parser:latest
+    restart: always
+    container_name: parser
+    ports:
+      - 8081:8080
