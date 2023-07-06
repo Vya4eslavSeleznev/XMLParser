@@ -10,13 +10,13 @@ import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 public class ThymeleafConfig {
 
     @Bean
-    SpringResourceTemplateResolver xmlTemplateResolver(ApplicationContext appCtx) {
+    public SpringResourceTemplateResolver xmlTemplateResolver(ApplicationContext appCtx) {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
 
         templateResolver.setApplicationContext(appCtx);
         templateResolver.setPrefix("classpath:/templates/");
         templateResolver.setSuffix(".xml");
-        templateResolver.setTemplateMode("XML");
+        templateResolver.setTemplateMode("TEXT");
         templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setCacheable(false);
 
@@ -24,7 +24,7 @@ public class ThymeleafConfig {
     }
 
     @Bean(name="springTemplateEngine")
-    SpringTemplateEngine templateEngine(ApplicationContext appCtx) {
+    public SpringTemplateEngine templateEngine(ApplicationContext appCtx) {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(xmlTemplateResolver(appCtx));
         return templateEngine;

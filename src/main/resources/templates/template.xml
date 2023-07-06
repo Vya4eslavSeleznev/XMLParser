@@ -1,3 +1,4 @@
+<?xml version = "1.0" encoding = "UTF-8" standalone = "no" ?>
 <letter xmlns:th="http://www.w3.org/1999/xhtml">
     <title>
         <description th:utext="${model.description}"/>
