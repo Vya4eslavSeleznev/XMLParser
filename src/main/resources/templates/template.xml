@@ -1,0 +1,38 @@
+<letter xmlns:th="http://www.w3.org/1999/xhtml">
+    <!-- Заголовок письма-->
+    <title>
+        <!-- Описание-->
+        <description>value="${description}"</description>
+        <!-- Тема письма-->
+        <theme th:text="${theme}"/>
+        <!-- Код темы письма-->
+        <alien_race code="${code}"/>
+        <!-- Дата создания исходного письма-->
+        <created>${date}</created>
+        <!-- ИД письма-->
+        <id description="Идентификатор письма" th:value="${id}"/>
+        <!--Авторы письма-->
+        <authors>
+            <!-- Автор 1-->
+            <employee>
+
+
+
+            </employee>
+        </authors>
+    </title>
+    <!-- Текст письма-->
+    <message>
+
+
+    </message>
+    <!-- контактная информация-->
+    <contacts>
+        <tel th:number="${phone}"/>
+        <address th:description="${address}"/>
+    </contacts>
+    <!-- Время отправки-->
+    <sent_time>
+        ${currentDate}
+    </sent_time>
+</letter>
