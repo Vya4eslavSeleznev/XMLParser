@@ -1,0 +1,26 @@
+<?xml version = "1.0" encoding = "UTF-8" standalone = "no" ?>
+<letter xmlns:th="http://www.w3.org/1999/xhtml">
+    <title>
+        <description th:utext="${model.description}"/>
+        <theme th:utext="${model.theme}"/>
+        <alien_race th:code="${model.code}"/>
+        <created th:utext="${model.date}"/>
+        <id description="Идентификатор письма" th:value="${model.id}"/>
+        <authors>
+            <employee th:each="author: ${model.authors}">
+                <name th:utext="${author.name}"/>
+                <second_name th:utext="${author.secondName}"/>
+                <lastname th:utext="${author.lastname}"/>
+                <position th:utext="${author.position}"/>
+            </employee>
+        </authors>
+    </title>
+    <message>
+        <paragraph th:each="message: ${model.messages}" th:utext="${message}"/>
+    </message>
+    <contacts>
+        <tel th:number="${model.phone}"/>
+        <address th:description="${model.address}"/>
+    </contacts>
+    <sent_time th:utext="${model.currentDate}"/>
+</letter>
