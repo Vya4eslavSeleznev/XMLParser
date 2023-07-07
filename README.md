@@ -60,6 +60,14 @@ Thymeleaf по приведенным в задании правилам.
 </letter>
 ```
 
+### Swagger
+
+- для запуска Swagger необходимо воспользоваться url:
+
+```
+http://localhost:8081/swagger-ui/index.html#/
+```
+
 # Как запустить?
 
 - Предварительно мной был создан образ приложения и добавлен на [DockerHub](https://hub.docker.com/u/vya4eslava):
