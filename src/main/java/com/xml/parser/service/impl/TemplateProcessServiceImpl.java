@@ -2,6 +2,7 @@ package com.xml.parser.service.impl;
 
 import com.xml.parser.entity.Author;
 import com.xml.parser.entity.Header;
+import com.xml.parser.exception.MessageException;
 import com.xml.parser.model.EmployeeModel;
 import com.xml.parser.model.InputMessageModel;
 import com.xml.parser.model.OutputMessageModel;
@@ -35,7 +36,7 @@ public class TemplateProcessServiceImpl implements TemplateProcessService {
 
     @Override
     public String setTemplate(MultipartFile file)
-      throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
+      throws XPathExpressionException, IOException, ParserConfigurationException, SAXException, MessageException {
         Context context = new Context();
 
         InputMessageModel inputMessageModel = parserService.parseInputMessage(file);

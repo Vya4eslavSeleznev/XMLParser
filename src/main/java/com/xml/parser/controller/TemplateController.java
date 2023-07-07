@@ -1,5 +1,6 @@
 package com.xml.parser.controller;
 
+import com.xml.parser.exception.MessageException;
 import com.xml.parser.service.TemplateProcessService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,9 @@ public class TemplateController {
         }
         catch(XPathExpressionException | IOException | ParserConfigurationException | SAXException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        catch(MessageException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
         }
     }
 }

@@ -78,5 +78,3 @@ http://localhost:8081/swagger-ui/index.html#/
 ```shell script
 docker compose up -d
 ```
-
-- После этого нужно зайти в Postman и вызывать эндпоинт, который описан выше

@@ -1,5 +1,6 @@
 package com.xml.parser.service.impl;
 
+import com.xml.parser.exception.MessageException;
 import com.xml.parser.model.InputMessageModel;
 import com.xml.parser.service.ParserService;
 import lombok.AllArgsConstructor;
@@ -33,7 +34,7 @@ public class ParserServiceImpl implements ParserService {
 
     @Override
     public InputMessageModel parseInputMessage(MultipartFile file)
-      throws IOException, SAXException, XPathExpressionException, ParserConfigurationException {
+      throws IOException, SAXException, XPathExpressionException, ParserConfigurationException, MessageException {
 
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
@@ -44,19 +45,28 @@ public class ParserServiceImpl implements ParserService {
           .compile("//Письмо_инопланетянам/author/id/value/text()")
           .evaluate(xmlDocument, XPathConstants.NODESET);
 
+        String code = getContent("//Письмо_инопланетянам/код_расы/value/text()", xPath, xmlDocument);
         String date = getContent("//Письмо_инопланетянам/created/@date_time", xPath, xmlDocument);
+        String uid = getContent("//Письмо_инопланетянам/uid/code/value/text()", xPath, xmlDocument);
         String phone = getContent("//Письмо_инопланетянам/document/tel/value/text()", xPath, xmlDocument);
         String address = getContent("//Письмо_инопланетянам/document/address/value/text()", xPath, xmlDocument);
+        String text = getContent("//Письмо_инопланетянам/document/text/text()", xPath, xmlDocument);
+
+        List<String> authorList = convertAuthors(authors);
+
+        if(code == null || date == null || uid == null || text == null || authorList.size() == 0) {
+            throw new MessageException();
+        }
 
         phone = ifContactNull(phone);
         address = ifContactNull(address);
 
         return new InputMessageModel(
-          getContent("//Письмо_инопланетянам/код_расы/value/text()", xPath, xmlDocument),
+          code,
           stringToDate(date),
-          getContent("//Письмо_инопланетянам/uid/code/value/text()", xPath, xmlDocument),
-          convertAuthors(authors),
-          convertText(getContent("//Письмо_инопланетянам/document/text/text()", xPath, xmlDocument)),
+          uid,
+          authorList,
+          convertText(text),
           address,
           phone.replaceAll("[()-]","")
         );
